@@ -5,7 +5,7 @@
 
 const substitutionModule = (function () {
 
-  const startAlpha = "abcdefghijklmnopqrstuvwxyz"
+const startAlpha = "abcdefghijklmnopqrstuvwxyz"
 
   function substitution(input, alphabet, encode = true) {
   //checks for edges cases
@@ -16,39 +16,48 @@ const substitutionModule = (function () {
   const findDuplicates = split.some((element, index) => {
   return split.indexOf(element) !== index})
   //accounts for capital letter in input by making them lowercase
-  input = input.toLowerCase()
+  input = input.toLowerCase().split('')
   //returns false if there are duplicates
   if (findDuplicates) return false 
   //create variable that will be eventual encoded message
   let finalMessage = ''
-
+  //to encode
   if (encode) {
-    //loop through input, checking for spaces
-    for(let i = 0; i < input.length; i++){
-      //includes spaces in final input
-      if (input[i] == " ") {
-        finalMessage += " ";
-        continue;
+    //loop through input
+     input.forEach((letter) => {
+       //look for spaces
+      if (letter === ' ') {
+        //include spaces
+      finalMessage += ' '
+      } else {
+        //find index of provided input letter on original alphabet
+        let index = startAlpha.indexOf(letter); 
+        //use that index to match with given alphabet
+        finalMessage += alphabet[index];
       }
-      let index = startAlpha.indexOf(input[i]); 
-      finalMessage += alphabet[index]; 
-      }
-      return finalMessage
-    }
+   })
+   return finalMessage
+  }
+  //to decode
   if (!encode) {
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] == " ") {
-        finalMessage += " ";
-        continue;
-      }
-      for (let j = 0; j < alphabet.length; j++) {
-        if (input[i] === alphabet[j]) {
-        finalMessage += startAlpha[j];
-          }
+    //loop through input
+    input.forEach((letter) => {
+      //look for spaces
+     if (letter === ' ') {
+       //include spaces
+       finalMessage += ' '
+     }
+      //loop through provided alphabet
+      for (let i = 0; i < alphabet.length; i++) {
+        //look for match between input letter and alphabet letter
+        if (letter === alphabet[i]) {
+          //use the index when there is a match to find corresponding letter on original alphabet
+        finalMessage += startAlpha[i];
         }
       }
-      return finalMessage;
-    }
+    })
+  return finalMessage
+  }
 }
         
 return {
@@ -56,5 +65,4 @@ substitution,
 };
 })();
         
-      module.exports = { substitution: substitutionModule.substitution };
-      
+module.exports = { substitution: substitutionModule.substitution };
