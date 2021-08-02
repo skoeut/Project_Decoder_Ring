@@ -19,13 +19,13 @@ describe('polybius', () => {
         expect(actual).to.eql("3251131343 2543241341");
     });
 
-    it('should return false when trying to decode a string that is not even in length', () =>{
+    it('should return false when decoding and length of characters in string is not even', () =>{
         const actual = polybius("44324233521254134", false);
         expect(actual).to.be.false;
     });
 
-    it('should include i and j as 1 letter', () =>{
+    it('should include both i and j when decoding', () =>{
         const actual = polybius('4432423352125413', false);
-        expect(actual).to.equal('thi/jnkful')
+        expect(actual).to.equal('th(i/j)nkful')
     });
 });

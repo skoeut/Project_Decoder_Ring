@@ -1,4 +1,5 @@
 // Write your tests here!
+
 const expect = require("chai").expect
 const {caesar} = require("../src/caesar")
 
@@ -10,14 +11,14 @@ describe("caesar", () => {
       });
 
    it("should encode a message when shift is negative", () => {
-      const expected = 'jbppxdb'
+      const expected = "jbppxdb"
       const actual = caesar("message", -3);
       expect(actual).to.eql(expected)
      });
 
    it("should decode a message", () => {
-      const expected = 'message'
-      const actual = caesar('umaaiom', 8, false)
+      const expected = "message"
+      const actual = caesar("umaaiom", 8, false)
       expect(actual).to.eql(expected)
    });
 
@@ -41,9 +42,14 @@ describe("caesar", () => {
       expect(actual).to.be.false;
       });
 
-  it("should maintain spaces and other non-alphabetic symbols", () => {
+  it("should maintain spaces, include non-alphabet symbols, and ignore capital letters", () => {
       const expected = "bpqa qa i amkzmb umaaiom!";
       const actual = caesar("This is a secret message!", 8);
       expect(actual).to.eql(expected);
    });
+
+   it("should wrap arourd to the front of alphabet", () => {
+      const expected = ('abc')
+      const actual = caesar("xyz", 3)
+   })
 })

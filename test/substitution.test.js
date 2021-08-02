@@ -17,7 +17,7 @@ describe("substitution", () => {
     expect(actual).to.eql(expected)
   })
 
-  it("returns false if provided alaphabet is not exactly 26 characters", () => {
+  it("should false if provided alaphabet is not 26 characters", () => {
     const actual = substitution("message", "short");
     expect(actual).to.be.false;
   });
@@ -27,7 +27,7 @@ describe("substitution", () => {
     expect(actual).to.be.false;
   });
 
-  it("should maintain spaces before, account for capital letter, and some non-alphabet characters", () => {
+  it("should maintain spaces, account for capital letter, and some non-alphabet characters", () => {
     const expected = "elp xhm xf mbymwwmfj dne";
     const actual = substitution("You are an excellent spy", "xoyqmcgrukswaflnthdjpzibev");
     expect(actual).to.eql(expected);
